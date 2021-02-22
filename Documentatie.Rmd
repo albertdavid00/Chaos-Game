@@ -1,0 +1,83 @@
+---
+output:
+  html_document: default
+  pdf_document: default
+---
+<center>
+# CHAOS GAME 3D
+</center>
+
+
+* Acest proiect este realizat de:
+  + *Bigan Marian-Antonio*
+  + *David Albert-Constantin*
+  + *Guță Răzvan-Alexandru*
+  + *Nimară Dan-Gabriel*  
+<br/><br/>
+
+<p style="font-size:20px"> **Descrierea Proiectului** </p>
+
+<p>  &nbsp; Proiectul nostru implementează Chaos Game, o metodă matematică de a crea un fractal, folosind un poliedru si un punct ales la întâmplare în interiorul acestuia. Fractalul este creat print adăugarea unei secvențe de puncte,   începând cu punctul ales inițial, iar pentru fiecare număr nou se atribuie o distanță între punctul precedent și unul dintre vârfurile poligonului.</p>
+<p>  &nbsp; Poliedrele tridimensionale alese pentru Chaos Game sunt tetraedrul, cubul, octaedrul și dodecaedrul. Pentru început vom defeni interfața pe care utilizatorului proiectului o va folosi, aceasta conține un sidebar în care regăsim trei comenzi, să selectăm forma pe care o vizualizăm, să stabilim rația distanței față de vârf și să alegem numărul punctelor. De asemenea, tot aici avem un buton "Genereaza", care la apăsarea sa în funcție de poliedrul selectat va realege primul punct, astfel va schimba distribuția celorlalte puncte. </p>
+<p> &nbsp; Pentru fiecare dintre cele patru poliedre vom seta varfurile sale în spațiu
+    *exemplu tetraedru:* <br/>
+    `endpoints <- matrix(ncol = 4, nrow = 4)`
+    <br/>
+    `endpoints[1, ] <- c(1,  1,  0, -1 / sqrt(2))`
+    <br/>
+    `endpoints[2, ] <- c(2, -1,  0, -1 / sqrt(2))`
+    <br/>
+    `endpoints[3, ] <- c(3,  0,  1,  1 / sqrt(2))`
+    <br/>
+    `endpoints[4, ] <- c(4,  0, -1,  1 / sqrt(2))`
+    <br/>
+Fiecare linie va reprezenta vârful poligonului (pentru cub vom avea o matrice cu 8 linii, pentru ocatedru 6 linii și pentru dodecaedru 20 de linii). iar coloanele reprezintă coordonatele x,y,z. Folosim funcția runif pentru a genera numere între 0 și 1, după care vom mapa fiecare punct la un vârf al poliedrului. Pornim cu un punct din primul cadran al figurii, căutăm vârful pentru fiecare punct (current), extragem coordonatele vârfului și determinăm noi coordonate aflate la raportul r (selectat în partea de sidebar) față de vârful poliedrului. Determinăm cel mai apropiat vârf al poliedrului pentru fiecare dintre punctele noastre, după care vom returna listele de vârfuri și coordonate ale punctelor. 
+</p>
+
+<p> 
+&nbsp; În partea de server a aplicației, în funcție de figura aleasă returnăm vârfurile cu coordonatele lor și punctele din interiorul figurii. Ulterior, verificăm dacă numărul maxim de puncte ale coordonatei de pe coloana 4(matricea coords), este 4 (avem un *tetraedu*), este 8(avem un *cub*), este 6(avem un *octaedru*), este 20 (avem un *dodecaedru*). Si prin funcția points3d le reprezentăm în spațiu și pentru fiecare set de coordonate setăm o culoare, astfel reprezentarea figurii este mai clară. În final, reprezentăm în spațiu prin aceași funcție și vârfurile poligonului.
+</p>
+
+<br/> <br/>
+
+<p style="font-size:20px"> **Pachete software folosite** </p>
+<p>
+  Pachetele software folosite în realizarea proiectului sunt:
+<br/>
+   <p style="font-size:15px"> **1. shiny**  </p>
+  <br/>
+ ``` Shiny este un pachet care are ca scop crearea aplicaților web direct din R. Acesta permite să folosești pentru aplicație CSS, HTML, JavaScript```
+  <p style="font-size:15px"> **2. shinyBS**  </p>
+  <br/>
+  ```Acest pachet adaugă mai multe funcționalități Bootstrap pentru Shiny.```
+  
+  <p style="font-size:15px"> **3. shinyRGL**  </p>
+  <br/>
+  ```Acest pachet permite utilizatorilor să utilizeze grafica interactivă 3D.```
+  
+  <p style="font-size:15px"> **4. rgl**  </p>
+  <br/>
+ ``` Acest pachet oferă funcții pentru grafica interactivă 3D, inclusiv funcții de modelare pe grafice, dar și funcții pentru construirea obiectelor geometrice.```
+  
+ <p style="font-size:15px"> **5. shinyWidgets**  </p>
+  <br/>
+ ``` Acest pachet se folosește pentru a da aplicației un anumit design din punct de vedere al culorilor. Se folosește pentru partea de interfață cu utilizatorul.```
+  
+</p>
+
+<br/> <br/>
+
+<p style="font-size:20px"> **Link-uri utile** </p>
+* Sursele de informație pe care le-am folosit în dezvoltarea proiectului sunt:
+  + [Exemplul de aplicație](https://demonstrations.wolfram.com/ChaosGame2D3D/)
+  + [Ghid vizualizație 3D](http://www.sthda.com/english/wiki/a-complete-guide-to-3d-visualization-device-system-in-r-r-software-and-data-visualization)
+  + [Despre poliedre regulate](https://en.wikipedia.org/wiki/Platonic_solid)
+  + [Despre Tetraedru](https://en.wikipedia.org/wiki/Tetrahedron#Coordinates_for_a_regular_tetrahedron)
+  + [Despre Cub](https://en.wikipedia.org/wiki/Cube#Cartesian_coordinates)
+  + [Despre Octaedru](https://en.wikipedia.org/wiki/Octahedron#Cartesian_coordinates)
+  + [Despre Dodecaedru](https://en.wikipedia.org/wiki/Regular_dodecahedron#Cartesian_coordinates)
+
+<br/><br/>
+
+
+
